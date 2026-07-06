@@ -16,7 +16,10 @@ export class LoginPage {
         this.loginButton = page.getByRole('button', { name: 'Login' });
     }
 
-    login(username: string, password: string){
+    async login(username: string, password: string){
+        await this.usernameInput.fill(username);
+        
+
 
     }
 }
