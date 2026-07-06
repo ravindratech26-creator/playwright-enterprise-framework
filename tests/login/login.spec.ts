@@ -4,6 +4,7 @@ import { loginData } from '../../test-data/loginData';
 test('Verify user can login with valid credentials', async ({ page, loginPage, inventoryPage }) => {
 
     await page.goto('/');
+   
 
     await loginPage.login(
         loginData.validUser.username,
