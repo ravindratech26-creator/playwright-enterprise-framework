@@ -1,0 +1,14 @@
+<testsuites id="" name="" tests="3" failures="0" skipped="0" errors="0" time="13.390616">
+<testsuite name="login\login.spec.ts" timestamp="2026-07-06T18:53:02.675Z" hostname="chromium" tests="1" failures="0" skipped="0" time="8.629" errors="0">
+<testcase name="Verify user can login with valid credentials" classname="login\login.spec.ts" time="8.629">
+</testcase>
+</testsuite>
+<testsuite name="login\login.spec.ts" timestamp="2026-07-06T18:53:02.675Z" hostname="firefox" tests="1" failures="0" skipped="0" time="5.428" errors="0">
+<testcase name="Verify user can login with valid credentials" classname="login\login.spec.ts" time="5.428">
+</testcase>
+</testsuite>
+<testsuite name="login\login.spec.ts" timestamp="2026-07-06T18:53:02.675Z" hostname="webkit" tests="1" failures="0" skipped="0" time="1.8" errors="0">
+<testcase name="Verify user can login with valid credentials" classname="login\login.spec.ts" time="1.8">
+</testcase>
+</testsuite>
+</testsuites>

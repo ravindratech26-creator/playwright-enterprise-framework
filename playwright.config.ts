@@ -19,7 +19,13 @@ export default defineConfig({
 
   workers: process.env.CI ? 1 : undefined,
 
-  reporter: 'html',
+  reporter: [
+    ['html'],
+    ['json', { outputFile: 'reports/json/report.json' }],
+    ['junit', { outputFile: 'reports/junit/results.xml' }]
+],
+
+  //reporter: 'html',
 
   use: {
     baseURL: process.env.BASE_URL,
