@@ -15,4 +15,8 @@ export class LoginPage {
         this.passwordInput = page.getByPlaceholder('Password');
         this.loginButton = page.getByRole('button', { name: 'Login' });
     }
+
+    login(username: string, password: string){
+
+    }
 }
