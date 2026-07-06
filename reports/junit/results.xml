@@ -1,14 +1,173 @@
-<testsuites id="" name="" tests="3" failures="0" skipped="0" errors="0" time="13.390616">
-<testsuite name="login\login.spec.ts" timestamp="2026-07-06T18:53:02.675Z" hostname="chromium" tests="1" failures="0" skipped="0" time="8.629" errors="0">
-<testcase name="Verify user can login with valid credentials" classname="login\login.spec.ts" time="8.629">
+<testsuites id="" name="" tests="3" failures="3" skipped="0" errors="0" time="25.698679">
+<testsuite name="login\login.spec.ts" timestamp="2026-07-06T19:00:33.209Z" hostname="chromium" tests="1" failures="1" skipped="0" time="9.758" errors="0">
+<testcase name="Verify user can login with valid credentials" classname="login\login.spec.ts" time="9.758">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|..\..\test-results\login-login-Verify-user-can-login-with-valid-credentials-chromium\test-failed-1.png]]
+
+[[ATTACHMENT|..\..\test-results\login-login-Verify-user-can-login-with-valid-credentials-chromium\video.webm]]
+
+[[ATTACHMENT|..\..\test-results\login-login-Verify-user-can-login-with-valid-credentials-chromium\error-context.md]]
+
+[[ATTACHMENT|..\..\test-results\login-login-Verify-user-can-login-with-valid-credentials-chromium\trace.zip]]
+]]>
+</system-out>
+<failure message="expect(page).toHaveURL(expected) failed" type="expect.toHaveURL">
+<![CDATA[  [chromium] › login\login.spec.ts:4:5 › Verify user can login with valid credentials ──────────────
+
+    Error: expect(page).toHaveURL(expected) failed
+
+    Expected: "https://www.saucedemo.com/inventory123.html"
+    Received: "https://www.saucedemo.com/inventory.html"
+    Timeout:  5000ms
+
+    Call log:
+      - Expect "toHaveURL" with timeout 5000ms
+        13 × unexpected value "https://www.saucedemo.com/inventory.html"
+
+
+      12 |     );
+      13 |
+    > 14 |     await expect(page).toHaveURL('/inventory123.html');
+         |                        ^
+      15 |
+      16 |     await inventoryPage.isInventoryPageDisplayed();
+      17 |
+        at D:\playwright-enterprise-framework\tests\login\login.spec.ts:14:24
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\test-results\login-login-Verify-user-can-login-with-valid-credentials-chromium\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ..\test-results\login-login-Verify-user-can-login-with-valid-credentials-chromium\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ..\test-results\login-login-Verify-user-can-login-with-valid-credentials-chromium\error-context.md
+
+    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
+    ..\test-results\login-login-Verify-user-can-login-with-valid-credentials-chromium\trace.zip
+    Usage:
+
+        npx playwright show-trace ..\test-results\login-login-Verify-user-can-login-with-valid-credentials-chromium\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+]]>
+</failure>
 </testcase>
 </testsuite>
-<testsuite name="login\login.spec.ts" timestamp="2026-07-06T18:53:02.675Z" hostname="firefox" tests="1" failures="0" skipped="0" time="5.428" errors="0">
-<testcase name="Verify user can login with valid credentials" classname="login\login.spec.ts" time="5.428">
+<testsuite name="login\login.spec.ts" timestamp="2026-07-06T19:00:33.209Z" hostname="firefox" tests="1" failures="1" skipped="0" time="12.791" errors="0">
+<testcase name="Verify user can login with valid credentials" classname="login\login.spec.ts" time="12.791">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|..\..\test-results\login-login-Verify-user-can-login-with-valid-credentials-firefox\test-failed-1.png]]
+
+[[ATTACHMENT|..\..\test-results\login-login-Verify-user-can-login-with-valid-credentials-firefox\video.webm]]
+
+[[ATTACHMENT|..\..\test-results\login-login-Verify-user-can-login-with-valid-credentials-firefox\error-context.md]]
+
+[[ATTACHMENT|..\..\test-results\login-login-Verify-user-can-login-with-valid-credentials-firefox\trace.zip]]
+]]>
+</system-out>
+<failure message="expect(page).toHaveURL(expected) failed" type="expect.toHaveURL">
+<![CDATA[  [firefox] › login\login.spec.ts:4:5 › Verify user can login with valid credentials ───────────────
+
+    Error: expect(page).toHaveURL(expected) failed
+
+    Expected: "https://www.saucedemo.com/inventory123.html"
+    Received: "https://www.saucedemo.com/inventory.html"
+    Timeout:  5000ms
+
+    Call log:
+      - Expect "toHaveURL" with timeout 5000ms
+        11 × unexpected value "https://www.saucedemo.com/inventory.html"
+
+
+      12 |     );
+      13 |
+    > 14 |     await expect(page).toHaveURL('/inventory123.html');
+         |                        ^
+      15 |
+      16 |     await inventoryPage.isInventoryPageDisplayed();
+      17 |
+        at D:\playwright-enterprise-framework\tests\login\login.spec.ts:14:24
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\test-results\login-login-Verify-user-can-login-with-valid-credentials-firefox\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ..\test-results\login-login-Verify-user-can-login-with-valid-credentials-firefox\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ..\test-results\login-login-Verify-user-can-login-with-valid-credentials-firefox\error-context.md
+
+    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
+    ..\test-results\login-login-Verify-user-can-login-with-valid-credentials-firefox\trace.zip
+    Usage:
+
+        npx playwright show-trace ..\test-results\login-login-Verify-user-can-login-with-valid-credentials-firefox\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+]]>
+</failure>
 </testcase>
 </testsuite>
-<testsuite name="login\login.spec.ts" timestamp="2026-07-06T18:53:02.675Z" hostname="webkit" tests="1" failures="0" skipped="0" time="1.8" errors="0">
-<testcase name="Verify user can login with valid credentials" classname="login\login.spec.ts" time="1.8">
+<testsuite name="login\login.spec.ts" timestamp="2026-07-06T19:00:33.209Z" hostname="webkit" tests="1" failures="1" skipped="0" time="10.349" errors="0">
+<testcase name="Verify user can login with valid credentials" classname="login\login.spec.ts" time="10.349">
+<system-out>
+<![CDATA[
+[[ATTACHMENT|..\..\test-results\login-login-Verify-user-can-login-with-valid-credentials-webkit\test-failed-1.png]]
+
+[[ATTACHMENT|..\..\test-results\login-login-Verify-user-can-login-with-valid-credentials-webkit\video.webm]]
+
+[[ATTACHMENT|..\..\test-results\login-login-Verify-user-can-login-with-valid-credentials-webkit\error-context.md]]
+
+[[ATTACHMENT|..\..\test-results\login-login-Verify-user-can-login-with-valid-credentials-webkit\trace.zip]]
+]]>
+</system-out>
+<failure message="expect(page).toHaveURL(expected) failed" type="expect.toHaveURL">
+<![CDATA[  [webkit] › login\login.spec.ts:4:5 › Verify user can login with valid credentials ────────────────
+
+    Error: expect(page).toHaveURL(expected) failed
+
+    Expected: "https://www.saucedemo.com/inventory123.html"
+    Received: "https://www.saucedemo.com/inventory.html"
+    Timeout:  5000ms
+
+    Call log:
+      - Expect "toHaveURL" with timeout 5000ms
+        12 × unexpected value "https://www.saucedemo.com/inventory.html"
+
+
+      12 |     );
+      13 |
+    > 14 |     await expect(page).toHaveURL('/inventory123.html');
+         |                        ^
+      15 |
+      16 |     await inventoryPage.isInventoryPageDisplayed();
+      17 |
+        at D:\playwright-enterprise-framework\tests\login\login.spec.ts:14:24
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    ..\test-results\login-login-Verify-user-can-login-with-valid-credentials-webkit\test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    ..\test-results\login-login-Verify-user-can-login-with-valid-credentials-webkit\video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: ..\test-results\login-login-Verify-user-can-login-with-valid-credentials-webkit\error-context.md
+
+    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
+    ..\test-results\login-login-Verify-user-can-login-with-valid-credentials-webkit\trace.zip
+    Usage:
+
+        npx playwright show-trace ..\test-results\login-login-Verify-user-can-login-with-valid-credentials-webkit\trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+]]>
+</failure>
 </testcase>
 </testsuite>
 </testsuites>
