@@ -1,4 +1,4 @@
-import '../../hooks/testHooks';
+import '../../hooks';
 import { test, expect } from '../../fixtures/pages';
 import { loginData } from '../../test-data/loginData';
 import { Logger } from '../../utils/Logger';

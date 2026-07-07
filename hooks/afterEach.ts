@@ -1,23 +1,5 @@
 import { test } from '../fixtures/pages';
 import { Logger } from '../utils/Logger';
-import { TestContext } from '../utils/TestContext';
-
-test.beforeEach(async ({ page, browserName }, testInfo) => {
-
-    // Store current test name
-    TestContext.setTestName(testInfo.title);
-
-    // Start Log
-    Logger.info("==================================================");
-    Logger.info("TEST STARTED");
-    Logger.info(`Test Name : ${testInfo.title}`);
-    Logger.info(`Browser   : ${browserName}`);
-    Logger.info("==================================================");
-
-    // Navigate to application
-    await page.goto('/');
-
-});
 
 test.afterEach(async ({ page, browserName }, testInfo) => {
 
@@ -27,7 +9,7 @@ test.afterEach(async ({ page, browserName }, testInfo) => {
     Logger.info(`Browser   : ${browserName}`);
     Logger.info(`Status    : ${testInfo.status}`);
 
-    // Capture screenshot only if test fails
+    // Capture screenshot on failure
     if (testInfo.status !== testInfo.expectedStatus) {
 
         const screenshotPath =
@@ -38,7 +20,7 @@ test.afterEach(async ({ page, browserName }, testInfo) => {
             fullPage: true
         });
 
-        Logger.error(`Screenshot captured : ${screenshotPath}`);
+        Logger.error(`Screenshot saved : ${screenshotPath}`);
     }
 
     Logger.info("==================================================");
