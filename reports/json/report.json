@@ -126,31 +126,64 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 2643,
+                  "duration": 2769,
                   "errors": [],
                   "stdout": [
                     {
-                      "text": "7/7/2026, 2:51:58 pm [INFO] [Verify user can login with valid credentials] Entering Username\n\n"
+                      "text": "7/7/2026, 2:57:44 pm [INFO] [Verify user can login with valid credentials] ==================================================\n\n"
                     },
                     {
-                      "text": "7/7/2026, 2:51:59 pm [INFO] [Verify user can login with valid credentials] Entering Password\n\n"
+                      "text": "7/7/2026, 2:57:44 pm [INFO] [Verify user can login with valid credentials] TEST STARTED\n\n"
                     },
                     {
-                      "text": "7/7/2026, 2:51:59 pm [INFO] [Verify user can login with valid credentials] Clicking Login Button\n\n"
+                      "text": "7/7/2026, 2:57:44 pm [INFO] [Verify user can login with valid credentials] Test Name : Verify user can login with valid credentials\n\n"
                     },
                     {
-                      "text": "7/7/2026, 2:51:59 pm [SUCCESS] [Verify user can login with valid credentials] Login request submitted successfully\n\n"
+                      "text": "7/7/2026, 2:57:44 pm [INFO] [Verify user can login with valid credentials] Browser   : chromium\n\n"
                     },
                     {
-                      "text": "7/7/2026, 2:51:59 pm [SUCCESS] [Verify user can login with valid credentials] User logged in successfully\n\n"
+                      "text": "7/7/2026, 2:57:44 pm [INFO] [Verify user can login with valid credentials] ==================================================\n\n"
                     },
                     {
-                      "text": "Test Status : passed\n"
+                      "text": "7/7/2026, 2:57:45 pm [INFO] [Verify user can login with valid credentials] Entering Username\n\n"
+                    },
+                    {
+                      "text": "7/7/2026, 2:57:45 pm [INFO] [Verify user can login with valid credentials] Entering Password\n\n"
+                    },
+                    {
+                      "text": "7/7/2026, 2:57:45 pm [INFO] [Verify user can login with valid credentials] Clicking Login Button\n\n"
+                    },
+                    {
+                      "text": "7/7/2026, 2:57:46 pm [SUCCESS] [Verify user can login with valid credentials] Login request submitted successfully\n\n"
+                    },
+                    {
+                      "text": "7/7/2026, 2:57:46 pm [SUCCESS] [Verify user can login with valid credentials] User logged in successfully\n\n"
+                    },
+                    {
+                      "text": "7/7/2026, 2:57:46 pm [INFO] [Verify user can login with valid credentials] ==================================================\n\n"
+                    },
+                    {
+                      "text": "7/7/2026, 2:57:46 pm [INFO] [Verify user can login with valid credentials] TEST COMPLETED\n\n"
+                    },
+                    {
+                      "text": "7/7/2026, 2:57:46 pm [INFO] [Verify user can login with valid credentials] Test Name : Verify user can login with valid credentials\n\n"
+                    },
+                    {
+                      "text": "7/7/2026, 2:57:46 pm [INFO] [Verify user can login with valid credentials] Browser   : chromium\n\n"
+                    },
+                    {
+                      "text": "7/7/2026, 2:57:46 pm [INFO] [Verify user can login with valid credentials] Status    : passed\n\n"
+                    },
+                    {
+                      "text": "7/7/2026, 2:57:46 pm [INFO] [Verify user can login with valid credentials] Duration  : 2299 ms\n\n"
+                    },
+                    {
+                      "text": "7/7/2026, 2:57:46 pm [INFO] [Verify user can login with valid credentials] ==================================================\n\n"
                     }
                   ],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-07-07T09:21:56.551Z",
+                  "startTime": "2026-07-07T09:27:43.305Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -168,8 +201,8 @@
   ],
   "errors": [],
   "stats": {
-    "startTime": "2026-07-07T09:21:55.359Z",
-    "duration": 5396.376,
+    "startTime": "2026-07-07T09:27:42.054Z",
+    "duration": 5530.683999999999,
     "expected": 1,
     "skipped": 0,
     "unexpected": 0,
