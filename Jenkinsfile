@@ -33,6 +33,7 @@ pipeline {
             steps {
                 echo 'Executing Playwright tests...'
                 bat "npx playwright test --project=${params.BROWSER}"
+                bat "npx playwright test ${params.TEST_FOLDER}"
             }
         }
 
