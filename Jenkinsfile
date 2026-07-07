@@ -2,16 +2,58 @@ pipeline {
 
     agent any
 
+    tools {
+        nodejs 'NodeJS-24'
+    }
+
     stages {
 
-        stage('Hello') {
-
+        stage('Checkout') {
             steps {
-
-                echo 'Hello Ravi!'
-
+                echo 'Checking out source code...'
+                checkout scm
             }
+        }
 
+        stage('Install Dependencies') {
+            steps {
+                echo 'Installing npm packages...'
+                bat 'npm ci'
+            }
+        }
+
+        stage('Install Playwright Browsers') {
+            steps {
+                echo 'Installing Playwright browsers...'
+                bat 'npx playwright install'
+            }
+        }
+
+        stage('Run Playwright Tests') {
+            steps {
+                echo 'Executing Playwright tests...'
+                bat 'npx playwright test'
+            }
+        }
+
+    }
+
+    post {
+
+        always {
+
+            archiveArtifacts artifacts: 'playwright-report/**', fingerprint: true
+
+            archiveArtifacts artifacts: 'test-results/**', fingerprint: true
+
+        }
+
+        success {
+            echo 'Playwright Tests Passed Successfully!'
+        }
+
+        failure {
+            echo 'Playwright Tests Failed!'
         }
 
     }
