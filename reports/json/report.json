@@ -3,7 +3,9 @@
     "argv": [
       "C:\\Program Files\\nodejs\\node.exe",
       "D:\\playwright-enterprise-framework\\node_modules\\@playwright\\test\\cli.js",
-      "test"
+      "test",
+      "--project=chromium",
+      "--headed"
     ],
     "configFile": "D:\\playwright-enterprise-framework\\playwright.config.ts",
     "rootDir": "D:/playwright-enterprise-framework/tests",
@@ -17,7 +19,7 @@
     "grepInvert": null,
     "maxFailures": 0,
     "metadata": {
-      "actualWorkers": 2
+      "actualWorkers": 1
     },
     "preserveOutput": "always",
     "projects": [
@@ -26,7 +28,7 @@
         "repeatEach": 1,
         "retries": 0,
         "metadata": {
-          "actualWorkers": 2
+          "actualWorkers": 1
         },
         "id": "chromium",
         "name": "chromium",
@@ -42,7 +44,7 @@
         "repeatEach": 1,
         "retries": 0,
         "metadata": {
-          "actualWorkers": 2
+          "actualWorkers": 1
         },
         "id": "firefox",
         "name": "firefox",
@@ -58,7 +60,7 @@
         "repeatEach": 1,
         "retries": 0,
         "metadata": {
-          "actualWorkers": 2
+          "actualWorkers": 1
         },
         "id": "webkit",
         "name": "webkit",
@@ -110,7 +112,7 @@
       "specs": [
         {
           "title": "Verify user can login with valid credentials",
-          "ok": false,
+          "ok": true,
           "tags": [],
           "tests": [
             {
@@ -123,226 +125,39 @@
                 {
                   "workerIndex": 0,
                   "parallelIndex": 0,
-                  "status": "failed",
-                  "duration": 9758,
-                  "error": {
-                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mpage\u001b[39m\u001b[2m).\u001b[22mtoHaveURL\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nExpected: \u001b[32m\"https://www.saucedemo.com/inventory\u001b[7m123\u001b[27m.html\"\u001b[39m\nReceived: \u001b[31m\"https://www.saucedemo.com/inventory.html\"\u001b[39m\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveURL\" with timeout 5000ms\u001b[22m\n\u001b[2m    13 × unexpected value \"https://www.saucedemo.com/inventory.html\"\u001b[22m\n",
-                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mpage\u001b[39m\u001b[2m).\u001b[22mtoHaveURL\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nExpected: \u001b[32m\"https://www.saucedemo.com/inventory\u001b[7m123\u001b[27m.html\"\u001b[39m\nReceived: \u001b[31m\"https://www.saucedemo.com/inventory.html\"\u001b[39m\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveURL\" with timeout 5000ms\u001b[22m\n\u001b[2m    13 × unexpected value \"https://www.saucedemo.com/inventory.html\"\u001b[22m\n\n    at D:\\playwright-enterprise-framework\\tests\\login\\login.spec.ts:14:24",
-                    "location": {
-                      "file": "D:\\playwright-enterprise-framework\\tests\\login\\login.spec.ts",
-                      "column": 24,
-                      "line": 14
-                    },
-                    "snippet": "\u001b[0m \u001b[90m 12 |\u001b[39m     )\u001b[33m;\u001b[39m\n \u001b[90m 13 |\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 14 |\u001b[39m     \u001b[36mawait\u001b[39m expect(page)\u001b[33m.\u001b[39mtoHaveURL(\u001b[32m'/inventory123.html'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                        \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 15 |\u001b[39m\n \u001b[90m 16 |\u001b[39m     \u001b[36mawait\u001b[39m inventoryPage\u001b[33m.\u001b[39misInventoryPageDisplayed()\u001b[33m;\u001b[39m\n \u001b[90m 17 |\u001b[39m\u001b[0m"
-                  },
-                  "errors": [
+                  "status": "passed",
+                  "duration": 2661,
+                  "errors": [],
+                  "stdout": [
                     {
-                      "location": {
-                        "file": "D:\\playwright-enterprise-framework\\tests\\login\\login.spec.ts",
-                        "column": 24,
-                        "line": 14
-                      },
-                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mpage\u001b[39m\u001b[2m).\u001b[22mtoHaveURL\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nExpected: \u001b[32m\"https://www.saucedemo.com/inventory\u001b[7m123\u001b[27m.html\"\u001b[39m\nReceived: \u001b[31m\"https://www.saucedemo.com/inventory.html\"\u001b[39m\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveURL\" with timeout 5000ms\u001b[22m\n\u001b[2m    13 × unexpected value \"https://www.saucedemo.com/inventory.html\"\u001b[22m\n\n\n\u001b[0m \u001b[90m 12 |\u001b[39m     )\u001b[33m;\u001b[39m\n \u001b[90m 13 |\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 14 |\u001b[39m     \u001b[36mawait\u001b[39m expect(page)\u001b[33m.\u001b[39mtoHaveURL(\u001b[32m'/inventory123.html'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                        \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 15 |\u001b[39m\n \u001b[90m 16 |\u001b[39m     \u001b[36mawait\u001b[39m inventoryPage\u001b[33m.\u001b[39misInventoryPageDisplayed()\u001b[33m;\u001b[39m\n \u001b[90m 17 |\u001b[39m\u001b[0m\n\u001b[2m    at D:\\playwright-enterprise-framework\\tests\\login\\login.spec.ts:14:24\u001b[22m"
+                      "text": "7/7/2026, 1:55:22 pm [INFO] Entering Username\n"
+                    },
+                    {
+                      "text": "7/7/2026, 1:55:22 pm [INFO] Entering Password\n"
+                    },
+                    {
+                      "text": "7/7/2026, 1:55:22 pm [INFO] Clicking Login Button\n"
+                    },
+                    {
+                      "text": "7/7/2026, 1:55:22 pm [SUCCESS] Login request submitted successfully\n"
+                    },
+                    {
+                      "text": "7/7/2026, 1:55:22 pm [SUCCESS] User logged in successfully\n"
                     }
                   ],
-                  "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-07-06T19:00:34.583Z",
+                  "startTime": "2026-07-07T08:25:19.981Z",
                   "annotations": [],
-                  "attachments": [
-                    {
-                      "name": "screenshot",
-                      "contentType": "image/png",
-                      "path": "D:\\playwright-enterprise-framework\\test-results\\login-login-Verify-user-can-login-with-valid-credentials-chromium\\test-failed-1.png"
-                    },
-                    {
-                      "name": "video",
-                      "contentType": "video/webm",
-                      "path": "D:\\playwright-enterprise-framework\\test-results\\login-login-Verify-user-can-login-with-valid-credentials-chromium\\video.webm"
-                    },
-                    {
-                      "name": "error-context",
-                      "contentType": "text/markdown",
-                      "path": "D:\\playwright-enterprise-framework\\test-results\\login-login-Verify-user-can-login-with-valid-credentials-chromium\\error-context.md"
-                    },
-                    {
-                      "name": "trace",
-                      "contentType": "application/zip",
-                      "path": "D:\\playwright-enterprise-framework\\test-results\\login-login-Verify-user-can-login-with-valid-credentials-chromium\\trace.zip"
-                    }
-                  ],
-                  "errorLocation": {
-                    "file": "D:\\playwright-enterprise-framework\\tests\\login\\login.spec.ts",
-                    "column": 24,
-                    "line": 14
-                  }
+                  "attachments": []
                 }
               ],
-              "status": "unexpected"
+              "status": "expected"
             }
           ],
           "id": "8efa2fccd8b5c3f9e367-484c45407a386ff6c2b0",
           "file": "login/login.spec.ts",
-          "line": 4,
-          "column": 5
-        },
-        {
-          "title": "Verify user can login with valid credentials",
-          "ok": false,
-          "tags": [],
-          "tests": [
-            {
-              "timeout": 30000,
-              "annotations": [],
-              "expectedStatus": "passed",
-              "projectId": "firefox",
-              "projectName": "firefox",
-              "results": [
-                {
-                  "workerIndex": 1,
-                  "parallelIndex": 1,
-                  "status": "failed",
-                  "duration": 12791,
-                  "error": {
-                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mpage\u001b[39m\u001b[2m).\u001b[22mtoHaveURL\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nExpected: \u001b[32m\"https://www.saucedemo.com/inventory\u001b[7m123\u001b[27m.html\"\u001b[39m\nReceived: \u001b[31m\"https://www.saucedemo.com/inventory.html\"\u001b[39m\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveURL\" with timeout 5000ms\u001b[22m\n\u001b[2m    11 × unexpected value \"https://www.saucedemo.com/inventory.html\"\u001b[22m\n",
-                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mpage\u001b[39m\u001b[2m).\u001b[22mtoHaveURL\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nExpected: \u001b[32m\"https://www.saucedemo.com/inventory\u001b[7m123\u001b[27m.html\"\u001b[39m\nReceived: \u001b[31m\"https://www.saucedemo.com/inventory.html\"\u001b[39m\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveURL\" with timeout 5000ms\u001b[22m\n\u001b[2m    11 × unexpected value \"https://www.saucedemo.com/inventory.html\"\u001b[22m\n\n    at D:\\playwright-enterprise-framework\\tests\\login\\login.spec.ts:14:24",
-                    "location": {
-                      "file": "D:\\playwright-enterprise-framework\\tests\\login\\login.spec.ts",
-                      "column": 24,
-                      "line": 14
-                    },
-                    "snippet": "\u001b[0m \u001b[90m 12 |\u001b[39m     )\u001b[33m;\u001b[39m\n \u001b[90m 13 |\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 14 |\u001b[39m     \u001b[36mawait\u001b[39m expect(page)\u001b[33m.\u001b[39mtoHaveURL(\u001b[32m'/inventory123.html'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                        \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 15 |\u001b[39m\n \u001b[90m 16 |\u001b[39m     \u001b[36mawait\u001b[39m inventoryPage\u001b[33m.\u001b[39misInventoryPageDisplayed()\u001b[33m;\u001b[39m\n \u001b[90m 17 |\u001b[39m\u001b[0m"
-                  },
-                  "errors": [
-                    {
-                      "location": {
-                        "file": "D:\\playwright-enterprise-framework\\tests\\login\\login.spec.ts",
-                        "column": 24,
-                        "line": 14
-                      },
-                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mpage\u001b[39m\u001b[2m).\u001b[22mtoHaveURL\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nExpected: \u001b[32m\"https://www.saucedemo.com/inventory\u001b[7m123\u001b[27m.html\"\u001b[39m\nReceived: \u001b[31m\"https://www.saucedemo.com/inventory.html\"\u001b[39m\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveURL\" with timeout 5000ms\u001b[22m\n\u001b[2m    11 × unexpected value \"https://www.saucedemo.com/inventory.html\"\u001b[22m\n\n\n\u001b[0m \u001b[90m 12 |\u001b[39m     )\u001b[33m;\u001b[39m\n \u001b[90m 13 |\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 14 |\u001b[39m     \u001b[36mawait\u001b[39m expect(page)\u001b[33m.\u001b[39mtoHaveURL(\u001b[32m'/inventory123.html'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                        \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 15 |\u001b[39m\n \u001b[90m 16 |\u001b[39m     \u001b[36mawait\u001b[39m inventoryPage\u001b[33m.\u001b[39misInventoryPageDisplayed()\u001b[33m;\u001b[39m\n \u001b[90m 17 |\u001b[39m\u001b[0m\n\u001b[2m    at D:\\playwright-enterprise-framework\\tests\\login\\login.spec.ts:14:24\u001b[22m"
-                    }
-                  ],
-                  "stdout": [],
-                  "stderr": [],
-                  "retry": 0,
-                  "startTime": "2026-07-06T19:00:34.464Z",
-                  "annotations": [],
-                  "attachments": [
-                    {
-                      "name": "screenshot",
-                      "contentType": "image/png",
-                      "path": "D:\\playwright-enterprise-framework\\test-results\\login-login-Verify-user-can-login-with-valid-credentials-firefox\\test-failed-1.png"
-                    },
-                    {
-                      "name": "video",
-                      "contentType": "video/webm",
-                      "path": "D:\\playwright-enterprise-framework\\test-results\\login-login-Verify-user-can-login-with-valid-credentials-firefox\\video.webm"
-                    },
-                    {
-                      "name": "error-context",
-                      "contentType": "text/markdown",
-                      "path": "D:\\playwright-enterprise-framework\\test-results\\login-login-Verify-user-can-login-with-valid-credentials-firefox\\error-context.md"
-                    },
-                    {
-                      "name": "trace",
-                      "contentType": "application/zip",
-                      "path": "D:\\playwright-enterprise-framework\\test-results\\login-login-Verify-user-can-login-with-valid-credentials-firefox\\trace.zip"
-                    }
-                  ],
-                  "errorLocation": {
-                    "file": "D:\\playwright-enterprise-framework\\tests\\login\\login.spec.ts",
-                    "column": 24,
-                    "line": 14
-                  }
-                }
-              ],
-              "status": "unexpected"
-            }
-          ],
-          "id": "8efa2fccd8b5c3f9e367-b7725f4d242f71ae31b0",
-          "file": "login/login.spec.ts",
-          "line": 4,
-          "column": 5
-        },
-        {
-          "title": "Verify user can login with valid credentials",
-          "ok": false,
-          "tags": [],
-          "tests": [
-            {
-              "timeout": 30000,
-              "annotations": [],
-              "expectedStatus": "passed",
-              "projectId": "webkit",
-              "projectName": "webkit",
-              "results": [
-                {
-                  "workerIndex": 2,
-                  "parallelIndex": 0,
-                  "status": "failed",
-                  "duration": 10349,
-                  "error": {
-                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mpage\u001b[39m\u001b[2m).\u001b[22mtoHaveURL\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nExpected: \u001b[32m\"https://www.saucedemo.com/inventory\u001b[7m123\u001b[27m.html\"\u001b[39m\nReceived: \u001b[31m\"https://www.saucedemo.com/inventory.html\"\u001b[39m\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveURL\" with timeout 5000ms\u001b[22m\n\u001b[2m    12 × unexpected value \"https://www.saucedemo.com/inventory.html\"\u001b[22m\n",
-                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mpage\u001b[39m\u001b[2m).\u001b[22mtoHaveURL\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nExpected: \u001b[32m\"https://www.saucedemo.com/inventory\u001b[7m123\u001b[27m.html\"\u001b[39m\nReceived: \u001b[31m\"https://www.saucedemo.com/inventory.html\"\u001b[39m\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveURL\" with timeout 5000ms\u001b[22m\n\u001b[2m    12 × unexpected value \"https://www.saucedemo.com/inventory.html\"\u001b[22m\n\n    at D:\\playwright-enterprise-framework\\tests\\login\\login.spec.ts:14:24",
-                    "location": {
-                      "file": "D:\\playwright-enterprise-framework\\tests\\login\\login.spec.ts",
-                      "column": 24,
-                      "line": 14
-                    },
-                    "snippet": "\u001b[0m \u001b[90m 12 |\u001b[39m     )\u001b[33m;\u001b[39m\n \u001b[90m 13 |\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 14 |\u001b[39m     \u001b[36mawait\u001b[39m expect(page)\u001b[33m.\u001b[39mtoHaveURL(\u001b[32m'/inventory123.html'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                        \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 15 |\u001b[39m\n \u001b[90m 16 |\u001b[39m     \u001b[36mawait\u001b[39m inventoryPage\u001b[33m.\u001b[39misInventoryPageDisplayed()\u001b[33m;\u001b[39m\n \u001b[90m 17 |\u001b[39m\u001b[0m"
-                  },
-                  "errors": [
-                    {
-                      "location": {
-                        "file": "D:\\playwright-enterprise-framework\\tests\\login\\login.spec.ts",
-                        "column": 24,
-                        "line": 14
-                      },
-                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mpage\u001b[39m\u001b[2m).\u001b[22mtoHaveURL\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nExpected: \u001b[32m\"https://www.saucedemo.com/inventory\u001b[7m123\u001b[27m.html\"\u001b[39m\nReceived: \u001b[31m\"https://www.saucedemo.com/inventory.html\"\u001b[39m\nTimeout:  5000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveURL\" with timeout 5000ms\u001b[22m\n\u001b[2m    12 × unexpected value \"https://www.saucedemo.com/inventory.html\"\u001b[22m\n\n\n\u001b[0m \u001b[90m 12 |\u001b[39m     )\u001b[33m;\u001b[39m\n \u001b[90m 13 |\u001b[39m\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 14 |\u001b[39m     \u001b[36mawait\u001b[39m expect(page)\u001b[33m.\u001b[39mtoHaveURL(\u001b[32m'/inventory123.html'\u001b[39m)\u001b[33m;\u001b[39m\n \u001b[90m    |\u001b[39m                        \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 15 |\u001b[39m\n \u001b[90m 16 |\u001b[39m     \u001b[36mawait\u001b[39m inventoryPage\u001b[33m.\u001b[39misInventoryPageDisplayed()\u001b[33m;\u001b[39m\n \u001b[90m 17 |\u001b[39m\u001b[0m\n\u001b[2m    at D:\\playwright-enterprise-framework\\tests\\login\\login.spec.ts:14:24\u001b[22m"
-                    }
-                  ],
-                  "stdout": [],
-                  "stderr": [],
-                  "retry": 0,
-                  "startTime": "2026-07-06T19:00:47.831Z",
-                  "annotations": [],
-                  "attachments": [
-                    {
-                      "name": "screenshot",
-                      "contentType": "image/png",
-                      "path": "D:\\playwright-enterprise-framework\\test-results\\login-login-Verify-user-can-login-with-valid-credentials-webkit\\test-failed-1.png"
-                    },
-                    {
-                      "name": "video",
-                      "contentType": "video/webm",
-                      "path": "D:\\playwright-enterprise-framework\\test-results\\login-login-Verify-user-can-login-with-valid-credentials-webkit\\video.webm"
-                    },
-                    {
-                      "name": "error-context",
-                      "contentType": "text/markdown",
-                      "path": "D:\\playwright-enterprise-framework\\test-results\\login-login-Verify-user-can-login-with-valid-credentials-webkit\\error-context.md"
-                    },
-                    {
-                      "name": "trace",
-                      "contentType": "application/zip",
-                      "path": "D:\\playwright-enterprise-framework\\test-results\\login-login-Verify-user-can-login-with-valid-credentials-webkit\\trace.zip"
-                    }
-                  ],
-                  "errorLocation": {
-                    "file": "D:\\playwright-enterprise-framework\\tests\\login\\login.spec.ts",
-                    "column": 24,
-                    "line": 14
-                  }
-                }
-              ],
-              "status": "unexpected"
-            }
-          ],
-          "id": "8efa2fccd8b5c3f9e367-d6019d512411ab2a546e",
-          "file": "login/login.spec.ts",
-          "line": 4,
+          "line": 5,
           "column": 5
         }
       ]
@@ -350,11 +165,11 @@
   ],
   "errors": [],
   "stats": {
-    "startTime": "2026-07-06T19:00:33.079Z",
-    "duration": 25698.679,
-    "expected": 0,
+    "startTime": "2026-07-07T08:25:18.738Z",
+    "duration": 5330.362999999999,
+    "expected": 1,
     "skipped": 0,
-    "unexpected": 3,
+    "unexpected": 0,
     "flaky": 0
   }
 }

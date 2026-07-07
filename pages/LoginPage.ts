@@ -1,5 +1,6 @@
 import { Page, Locator } from '@playwright/test';
 import { BasePage } from './BasePage';
+import { Logger } from '../utils/Logger';
 
 export class LoginPage extends BasePage  {
 
@@ -16,29 +17,23 @@ export class LoginPage extends BasePage  {
         this.usernameInput = page.getByPlaceholder('Username');
         this.passwordInput = page.getByPlaceholder('Password');
         this.loginButton = page.getByRole('button', { name: 'Login' });
-    //     this.usernameInput = page.locator('#user-name');
-    // this.passwordInput = page.locator('#password');
-    // this.loginButton = page.locator('#login-button');
+ 
     }
 
-    async login(username: string, password: string){
-    //     console.log("Inside login()");
+    
+    async login(username: string, password: string) {
 
-    // await this.usernameInput.fill(username);
-    // console.log("Username entered");
+    Logger.info("Entering Username");
+    await this.usernameInput.fill(username);
 
-    // await this.passwordInput.fill(password);
-    // console.log("Password entered");
+    Logger.info("Entering Password");
+    await this.passwordInput.fill(password);
 
-    // await this.loginButton.click();
-    // console.log("Login button clicked");
+    Logger.info("Clicking Login Button");
+    await this.loginButton.click();
 
-  
-         await this.usernameInput.fill(username);
-         await this.passwordInput.fill(password);
-         await this.loginButton.click();
+    Logger.success("Login request submitted successfully");
+}
 
-
-
-    }
+    
 }
