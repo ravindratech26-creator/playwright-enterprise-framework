@@ -11,6 +11,9 @@ on:
 
   workflow_dispatch:
 
+  schedule:
+    - cron: '0 2 * * *'
+
 jobs:
   playwright-tests:
     runs-on: ubuntu-latest
