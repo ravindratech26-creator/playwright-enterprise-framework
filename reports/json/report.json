@@ -126,28 +126,31 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 2661,
+                  "duration": 2643,
                   "errors": [],
                   "stdout": [
                     {
-                      "text": "7/7/2026, 1:55:22 pm [INFO] Entering Username\n"
+                      "text": "7/7/2026, 2:51:58 pm [INFO] [Verify user can login with valid credentials] Entering Username\n\n"
                     },
                     {
-                      "text": "7/7/2026, 1:55:22 pm [INFO] Entering Password\n"
+                      "text": "7/7/2026, 2:51:59 pm [INFO] [Verify user can login with valid credentials] Entering Password\n\n"
                     },
                     {
-                      "text": "7/7/2026, 1:55:22 pm [INFO] Clicking Login Button\n"
+                      "text": "7/7/2026, 2:51:59 pm [INFO] [Verify user can login with valid credentials] Clicking Login Button\n\n"
                     },
                     {
-                      "text": "7/7/2026, 1:55:22 pm [SUCCESS] Login request submitted successfully\n"
+                      "text": "7/7/2026, 2:51:59 pm [SUCCESS] [Verify user can login with valid credentials] Login request submitted successfully\n\n"
                     },
                     {
-                      "text": "7/7/2026, 1:55:22 pm [SUCCESS] User logged in successfully\n"
+                      "text": "7/7/2026, 2:51:59 pm [SUCCESS] [Verify user can login with valid credentials] User logged in successfully\n\n"
+                    },
+                    {
+                      "text": "Test Status : passed\n"
                     }
                   ],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-07-07T08:25:19.981Z",
+                  "startTime": "2026-07-07T09:21:56.551Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -157,7 +160,7 @@
           ],
           "id": "8efa2fccd8b5c3f9e367-484c45407a386ff6c2b0",
           "file": "login/login.spec.ts",
-          "line": 5,
+          "line": 6,
           "column": 5
         }
       ]
@@ -165,8 +168,8 @@
   ],
   "errors": [],
   "stats": {
-    "startTime": "2026-07-07T08:25:18.738Z",
-    "duration": 5330.362999999999,
+    "startTime": "2026-07-07T09:21:55.359Z",
+    "duration": 5396.376,
     "expected": 1,
     "skipped": 0,
     "unexpected": 0,

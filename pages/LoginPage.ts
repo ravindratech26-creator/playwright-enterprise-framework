@@ -23,6 +23,7 @@ export class LoginPage extends BasePage  {
     
     async login(username: string, password: string) {
 
+
     Logger.info("Entering Username");
     await this.usernameInput.fill(username);
 
