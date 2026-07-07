@@ -31,8 +31,8 @@ pipeline {
 
         stage('Run Playwright Tests') {
             steps {
-                echo 'Executing Playwright tests...'
-                bat 'npx playwright test'
+                echo "Running tests on ${params.BROWSER}"
+                bat "npx playwright test --project=${params.BROWSER}"
             }
         }
 
