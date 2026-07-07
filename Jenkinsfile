@@ -2,38 +2,78 @@ pipeline {
 
     agent any
 
-    tools {
-        nodejs 'NodeJS-24'
+    options {
+        timestamps()
+        buildDiscarder(logRotator(numToKeepStr: '10'))
+    }
+
+    parameters {
+
+        choice(
+            name: 'BROWSER',
+            choices: ['chromium', 'firefox', 'webkit'],
+            description: 'Select Playwright Browser'
+        )
+
+        choice(
+            name: 'TEST_SUITE',
+            choices: [
+                'all',
+                'tests/login',
+                'tests/cart',
+                'tests/checkout'
+            ],
+            description: 'Select Test Suite'
+        )
+
+    }
+
+    environment {
+        IMAGE_NAME = 'playwright-framework'
     }
 
     stages {
 
-        stage('Checkout') {
+        stage('Checkout Source Code') {
             steps {
-                echo 'Checking out source code...'
+                echo '========== CHECKOUT =========='
                 checkout scm
             }
         }
 
-        stage('Install Dependencies') {
+        stage('Build Docker Image') {
             steps {
-                echo 'Installing npm packages...'
-                bat 'npm ci'
-            }
-        }
-
-        stage('Install Playwright Browsers') {
-            steps {
-                echo 'Installing Playwright browsers...'
-                bat 'npx playwright install'
+                echo '========== BUILD DOCKER IMAGE =========='
+                bat "docker build -t %IMAGE_NAME% ."
             }
         }
 
         stage('Run Playwright Tests') {
             steps {
-                echo 'Executing Playwright tests...'
-                bat "npx playwright test --project=${params.BROWSER}"
-                bat "npx playwright test ${params.TEST_FOLDER}"
+
+                script {
+
+                    if (params.TEST_SUITE == 'all') {
+
+                        bat """
+                        docker run --rm ^
+                        -e BROWSER=${params.BROWSER} ^
+                        %IMAGE_NAME%
+                        """
+
+                    } else {
+
+                        bat """
+                        docker run --rm ^
+                        -e BROWSER=${params.BROWSER} ^
+                        %IMAGE_NAME% ^
+                        npx playwright test ${params.TEST_SUITE} --project=${params.BROWSER}
+                        """
+
+                    }
+
+                }
+
             }
         }
 
@@ -43,18 +83,32 @@ pipeline {
 
         always {
 
-            archiveArtifacts artifacts: 'playwright-report/**', fingerprint: true
+            echo '========== PIPELINE COMPLETED =========='
 
-            archiveArtifacts artifacts: 'test-results/**', fingerprint: true
+            archiveArtifacts artifacts: 'playwright-report/**', allowEmptyArchive: true
+
+            archiveArtifacts artifacts: 'test-results/**', allowEmptyArchive: true
+
+            archiveArtifacts artifacts: 'logs/**', allowEmptyArchive: true
 
         }
 
         success {
-            echo 'Playwright Tests Passed Successfully!'
+
+            echo 'SUCCESS : Playwright execution completed successfully.'
+
         }
 
         failure {
-            echo 'Playwright Tests Failed!'
+
+            echo 'FAILED : Playwright execution failed.'
+
+        }
+
+        cleanup {
+
+            bat 'docker image prune -f'
+
         }
 
     }
