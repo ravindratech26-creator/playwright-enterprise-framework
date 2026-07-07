@@ -61,3 +61,35 @@
 7/7/2026, 3:23:54 pm [INFO] [Verify user can login with valid credentials] Browser   : chromium
 7/7/2026, 3:23:54 pm [INFO] [Verify user can login with valid credentials] Status    : passed
 7/7/2026, 3:23:54 pm [INFO] [Verify user can login with valid credentials] ==================================================
+8/7/2026, 12:35:24 am [INFO] [Verify user can login with valid credentials] ==================================================
+8/7/2026, 12:35:25 am [INFO] [Verify user can login with valid credentials] TEST STARTED
+8/7/2026, 12:35:25 am [INFO] [Verify user can login with valid credentials] Test Name : Verify user can login with valid credentials
+8/7/2026, 12:35:25 am [INFO] [Verify user can login with valid credentials] Browser   : chromium
+8/7/2026, 12:35:25 am [INFO] [Verify user can login with valid credentials] ==================================================
+8/7/2026, 12:35:26 am [INFO] [Verify user can login with valid credentials] Entering Username
+8/7/2026, 12:35:26 am [INFO] [Verify user can login with valid credentials] Entering Password
+8/7/2026, 12:35:26 am [INFO] [Verify user can login with valid credentials] Clicking Login Button
+8/7/2026, 12:35:26 am [SUCCESS] [Verify user can login with valid credentials] Login request submitted successfully
+8/7/2026, 12:35:26 am [SUCCESS] [Verify user can login with valid credentials] User logged in successfully
+8/7/2026, 12:35:26 am [INFO] [Verify user can login with valid credentials] ==================================================
+8/7/2026, 12:35:26 am [INFO] [Verify user can login with valid credentials] TEST COMPLETED
+8/7/2026, 12:35:26 am [INFO] [Verify user can login with valid credentials] Test Name : Verify user can login with valid credentials
+8/7/2026, 12:35:26 am [INFO] [Verify user can login with valid credentials] Browser   : chromium
+8/7/2026, 12:35:26 am [INFO] [Verify user can login with valid credentials] Status    : passed
+8/7/2026, 12:35:26 am [INFO] [Verify user can login with valid credentials] ==================================================
+8/7/2026, 12:37:50 am [INFO] [Verify user can login with valid credentials] ==================================================
+8/7/2026, 12:37:50 am [INFO] [Verify user can login with valid credentials] TEST STARTED
+8/7/2026, 12:37:50 am [INFO] [Verify user can login with valid credentials] Test Name : Verify user can login with valid credentials
+8/7/2026, 12:37:50 am [INFO] [Verify user can login with valid credentials] Browser   : chromium
+8/7/2026, 12:37:50 am [INFO] [Verify user can login with valid credentials] ==================================================
+8/7/2026, 12:37:51 am [INFO] [Verify user can login with valid credentials] Entering Username
+8/7/2026, 12:37:51 am [INFO] [Verify user can login with valid credentials] Entering Password
+8/7/2026, 12:37:51 am [INFO] [Verify user can login with valid credentials] Clicking Login Button
+8/7/2026, 12:37:51 am [SUCCESS] [Verify user can login with valid credentials] Login request submitted successfully
+8/7/2026, 12:37:51 am [SUCCESS] [Verify user can login with valid credentials] User logged in successfully
+8/7/2026, 12:37:51 am [INFO] [Verify user can login with valid credentials] ==================================================
+8/7/2026, 12:37:51 am [INFO] [Verify user can login with valid credentials] TEST COMPLETED
+8/7/2026, 12:37:51 am [INFO] [Verify user can login with valid credentials] Test Name : Verify user can login with valid credentials
+8/7/2026, 12:37:51 am [INFO] [Verify user can login with valid credentials] Browser   : chromium
+8/7/2026, 12:37:51 am [INFO] [Verify user can login with valid credentials] Status    : passed
+8/7/2026, 12:37:51 am [INFO] [Verify user can login with valid credentials] ==================================================

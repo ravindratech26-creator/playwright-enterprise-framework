@@ -1,38 +1,38 @@
-<testsuites id="" name="" tests="1" failures="0" skipped="0" errors="0" time="5.868054">
-<testsuite name="login\login.spec.ts" timestamp="2026-07-07T09:53:49.815Z" hostname="chromium" tests="1" failures="0" skipped="0" time="2.878" errors="0">
-<testcase name="Verify user can login with valid credentials" classname="login\login.spec.ts" time="2.878">
+<testsuites id="" name="" tests="1" failures="0" skipped="0" errors="0" time="5.275424999999999">
+<testsuite name="login\login.spec.ts" timestamp="2026-07-07T19:07:47.737Z" hostname="chromium" tests="1" failures="0" skipped="0" time="2.827" errors="0">
+<testcase name="Verify user can login with valid credentials" classname="login\login.spec.ts" time="2.827">
 <system-out>
-<![CDATA[7/7/2026, 3:23:52 pm [INFO] [Verify user can login with valid credentials] ==================================================
+<![CDATA[8/7/2026, 12:37:50 am [INFO] [Verify user can login with valid credentials] ==================================================
 
-7/7/2026, 3:23:52 pm [INFO] [Verify user can login with valid credentials] TEST STARTED
+8/7/2026, 12:37:50 am [INFO] [Verify user can login with valid credentials] TEST STARTED
 
-7/7/2026, 3:23:52 pm [INFO] [Verify user can login with valid credentials] Test Name : Verify user can login with valid credentials
+8/7/2026, 12:37:50 am [INFO] [Verify user can login with valid credentials] Test Name : Verify user can login with valid credentials
 
-7/7/2026, 3:23:52 pm [INFO] [Verify user can login with valid credentials] Browser   : chromium
+8/7/2026, 12:37:50 am [INFO] [Verify user can login with valid credentials] Browser   : chromium
 
-7/7/2026, 3:23:52 pm [INFO] [Verify user can login with valid credentials] ==================================================
+8/7/2026, 12:37:50 am [INFO] [Verify user can login with valid credentials] ==================================================
 
-7/7/2026, 3:23:53 pm [INFO] [Verify user can login with valid credentials] Entering Username
+8/7/2026, 12:37:51 am [INFO] [Verify user can login with valid credentials] Entering Username
 
-7/7/2026, 3:23:53 pm [INFO] [Verify user can login with valid credentials] Entering Password
+8/7/2026, 12:37:51 am [INFO] [Verify user can login with valid credentials] Entering Password
 
-7/7/2026, 3:23:53 pm [INFO] [Verify user can login with valid credentials] Clicking Login Button
+8/7/2026, 12:37:51 am [INFO] [Verify user can login with valid credentials] Clicking Login Button
 
-7/7/2026, 3:23:53 pm [SUCCESS] [Verify user can login with valid credentials] Login request submitted successfully
+8/7/2026, 12:37:51 am [SUCCESS] [Verify user can login with valid credentials] Login request submitted successfully
 
-7/7/2026, 3:23:53 pm [SUCCESS] [Verify user can login with valid credentials] User logged in successfully
+8/7/2026, 12:37:51 am [SUCCESS] [Verify user can login with valid credentials] User logged in successfully
 
-7/7/2026, 3:23:54 pm [INFO] [Verify user can login with valid credentials] ==================================================
+8/7/2026, 12:37:51 am [INFO] [Verify user can login with valid credentials] ==================================================
 
-7/7/2026, 3:23:54 pm [INFO] [Verify user can login with valid credentials] TEST COMPLETED
+8/7/2026, 12:37:51 am [INFO] [Verify user can login with valid credentials] TEST COMPLETED
 
-7/7/2026, 3:23:54 pm [INFO] [Verify user can login with valid credentials] Test Name : Verify user can login with valid credentials
+8/7/2026, 12:37:51 am [INFO] [Verify user can login with valid credentials] Test Name : Verify user can login with valid credentials
 
-7/7/2026, 3:23:54 pm [INFO] [Verify user can login with valid credentials] Browser   : chromium
+8/7/2026, 12:37:51 am [INFO] [Verify user can login with valid credentials] Browser   : chromium
 
-7/7/2026, 3:23:54 pm [INFO] [Verify user can login with valid credentials] Status    : passed
+8/7/2026, 12:37:51 am [INFO] [Verify user can login with valid credentials] Status    : passed
 
-7/7/2026, 3:23:54 pm [INFO] [Verify user can login with valid credentials] ==================================================
+8/7/2026, 12:37:51 am [INFO] [Verify user can login with valid credentials] ==================================================
 
 ]]>
 </system-out>

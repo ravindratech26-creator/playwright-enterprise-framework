@@ -126,61 +126,61 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 2878,
+                  "duration": 2827,
                   "errors": [],
                   "stdout": [
                     {
-                      "text": "7/7/2026, 3:23:52 pm [INFO] [Verify user can login with valid credentials] ==================================================\n\n"
+                      "text": "8/7/2026, 12:37:50 am [INFO] [Verify user can login with valid credentials] ==================================================\n\n"
                     },
                     {
-                      "text": "7/7/2026, 3:23:52 pm [INFO] [Verify user can login with valid credentials] TEST STARTED\n\n"
+                      "text": "8/7/2026, 12:37:50 am [INFO] [Verify user can login with valid credentials] TEST STARTED\n\n"
                     },
                     {
-                      "text": "7/7/2026, 3:23:52 pm [INFO] [Verify user can login with valid credentials] Test Name : Verify user can login with valid credentials\n\n"
+                      "text": "8/7/2026, 12:37:50 am [INFO] [Verify user can login with valid credentials] Test Name : Verify user can login with valid credentials\n\n"
                     },
                     {
-                      "text": "7/7/2026, 3:23:52 pm [INFO] [Verify user can login with valid credentials] Browser   : chromium\n\n"
+                      "text": "8/7/2026, 12:37:50 am [INFO] [Verify user can login with valid credentials] Browser   : chromium\n\n"
                     },
                     {
-                      "text": "7/7/2026, 3:23:52 pm [INFO] [Verify user can login with valid credentials] ==================================================\n\n"
+                      "text": "8/7/2026, 12:37:50 am [INFO] [Verify user can login with valid credentials] ==================================================\n\n"
                     },
                     {
-                      "text": "7/7/2026, 3:23:53 pm [INFO] [Verify user can login with valid credentials] Entering Username\n\n"
+                      "text": "8/7/2026, 12:37:51 am [INFO] [Verify user can login with valid credentials] Entering Username\n\n"
                     },
                     {
-                      "text": "7/7/2026, 3:23:53 pm [INFO] [Verify user can login with valid credentials] Entering Password\n\n"
+                      "text": "8/7/2026, 12:37:51 am [INFO] [Verify user can login with valid credentials] Entering Password\n\n"
                     },
                     {
-                      "text": "7/7/2026, 3:23:53 pm [INFO] [Verify user can login with valid credentials] Clicking Login Button\n\n"
+                      "text": "8/7/2026, 12:37:51 am [INFO] [Verify user can login with valid credentials] Clicking Login Button\n\n"
                     },
                     {
-                      "text": "7/7/2026, 3:23:53 pm [SUCCESS] [Verify user can login with valid credentials] Login request submitted successfully\n\n"
+                      "text": "8/7/2026, 12:37:51 am [SUCCESS] [Verify user can login with valid credentials] Login request submitted successfully\n\n"
                     },
                     {
-                      "text": "7/7/2026, 3:23:53 pm [SUCCESS] [Verify user can login with valid credentials] User logged in successfully\n\n"
+                      "text": "8/7/2026, 12:37:51 am [SUCCESS] [Verify user can login with valid credentials] User logged in successfully\n\n"
                     },
                     {
-                      "text": "7/7/2026, 3:23:54 pm [INFO] [Verify user can login with valid credentials] ==================================================\n\n"
+                      "text": "8/7/2026, 12:37:51 am [INFO] [Verify user can login with valid credentials] ==================================================\n\n"
                     },
                     {
-                      "text": "7/7/2026, 3:23:54 pm [INFO] [Verify user can login with valid credentials] TEST COMPLETED\n\n"
+                      "text": "8/7/2026, 12:37:51 am [INFO] [Verify user can login with valid credentials] TEST COMPLETED\n\n"
                     },
                     {
-                      "text": "7/7/2026, 3:23:54 pm [INFO] [Verify user can login with valid credentials] Test Name : Verify user can login with valid credentials\n\n"
+                      "text": "8/7/2026, 12:37:51 am [INFO] [Verify user can login with valid credentials] Test Name : Verify user can login with valid credentials\n\n"
                     },
                     {
-                      "text": "7/7/2026, 3:23:54 pm [INFO] [Verify user can login with valid credentials] Browser   : chromium\n\n"
+                      "text": "8/7/2026, 12:37:51 am [INFO] [Verify user can login with valid credentials] Browser   : chromium\n\n"
                     },
                     {
-                      "text": "7/7/2026, 3:23:54 pm [INFO] [Verify user can login with valid credentials] Status    : passed\n\n"
+                      "text": "8/7/2026, 12:37:51 am [INFO] [Verify user can login with valid credentials] Status    : passed\n\n"
                     },
                     {
-                      "text": "7/7/2026, 3:23:54 pm [INFO] [Verify user can login with valid credentials] ==================================================\n\n"
+                      "text": "8/7/2026, 12:37:51 am [INFO] [Verify user can login with valid credentials] ==================================================\n\n"
                     }
                   ],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-07-07T09:53:50.840Z",
+                  "startTime": "2026-07-07T19:07:48.608Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -198,8 +198,8 @@
   ],
   "errors": [],
   "stats": {
-    "startTime": "2026-07-07T09:53:49.457Z",
-    "duration": 5868.054,
+    "startTime": "2026-07-07T19:07:47.627Z",
+    "duration": 5275.424999999999,
     "expected": 1,
     "skipped": 0,
     "unexpected": 0,
