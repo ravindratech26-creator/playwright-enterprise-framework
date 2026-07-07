@@ -1,0 +1,8 @@
+name: Playwright Framework
+
+on:
+  workflow_dispatch:
+
+jobs:
+  playwright-tests:
+    runs-on: ubuntu-latest
