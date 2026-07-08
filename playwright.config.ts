@@ -11,7 +11,12 @@ dotenv.config();
 const requiredEnvVars = [
     'BASE_URL',
     'APP_USERNAME',
-    'APP_PASSWORD'
+    'APP_PASSWORD',
+    'MONGO_URI',
+    'MONGO_DATABASE',
+    'MONGO_COLLECTION'
+
+    
 ];
 
 for (const envVar of requiredEnvVars) {

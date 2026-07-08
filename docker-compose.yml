@@ -11,6 +11,9 @@ services:
     env_file:
       - .env
 
+    environment:
+      MONGO_URI: mongodb://host.docker.internal:27017
+
     volumes:
       - ./playwright-report:/app/playwright-report
 
