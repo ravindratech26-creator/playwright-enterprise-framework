@@ -31,8 +31,8 @@ pipeline {
         IMAGE_NAME = 'playwright-enterprise-framework'
 
         BASE_URL = credentials('BASE_URL')
-        USERNAME = credentials('APP_USERNAME')
-        PASSWORD = credentials('APP_PASSWORD')
+        APP_USERNAME = credentials('APP_USERNAME')
+        APP_PASSWORD = credentials('APP_PASSWORD')
     }
 
     stages {
