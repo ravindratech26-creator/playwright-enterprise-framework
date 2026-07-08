@@ -1,9 +1,28 @@
-
-
-# Playwright
+# Node Modules
 node_modules/
-/test-results/
-/playwright-report/
-/blob-report/
-/playwright/.cache/
-/playwright/.auth/
+
+# Environment Variables
+.env
+.env.*
+!.env.example
+
+# Playwright Reports
+playwright-report/
+test-results/
+blob-report/
+
+# Playwright Cache
+playwright/.cache/
+playwright/.auth/
+
+# Custom Reports
+reports/
+logs/
+
+# OS Files
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/

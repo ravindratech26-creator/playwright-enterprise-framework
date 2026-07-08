@@ -13,5 +13,7 @@ RUN npm ci
 # Copy project files
 COPY . .
 
+RUN npx playwright install
+
 # Execute Playwright tests
 CMD ["npx", "playwright", "test"]

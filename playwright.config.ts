@@ -1,12 +1,24 @@
 import { defineConfig, devices } from '@playwright/test';
 import dotenv from 'dotenv';
-import path from 'path';
+
 
 // Load .env file
-dotenv.config({
-  path: path.resolve(__dirname, '.env'),
-  
-});
+dotenv.config();
+
+
+// Validate required environment variables
+
+const requiredEnvVars = [
+    'BASE_URL',
+    'APP_USERNAME',
+    'APP_PASSWORD'
+];
+
+for (const envVar of requiredEnvVars) {
+    if (!process.env[envVar]) {
+        throw new Error(`${envVar} is not configured.`);
+    }
+}
 
 export default defineConfig({
   testDir: './tests',
@@ -23,9 +35,7 @@ export default defineConfig({
     ['html'],
     ['json', { outputFile: 'reports/json/report.json' }],
     ['junit', { outputFile: 'reports/junit/results.xml' }]
-],
-
-  //reporter: 'html',
+  ],
 
   use: {
     baseURL: process.env.BASE_URL,
@@ -33,11 +43,6 @@ export default defineConfig({
     screenshot: 'only-on-failure',
     video: 'retain-on-failure',
     trace: 'retain-on-failure',
-
-    
-    
-
-    
   },
 
   projects: [
