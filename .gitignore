@@ -11,6 +11,10 @@ playwright-report/
 test-results/
 blob-report/
 
+# Allure Reports
+allure-results/
+allure-report/
+
 # Playwright Cache
 playwright/.cache/
 playwright/.auth/

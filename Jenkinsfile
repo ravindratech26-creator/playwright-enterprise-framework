@@ -123,6 +123,11 @@ pipeline {
             archiveArtifacts artifacts: 'playwright-report/**', allowEmptyArchive: true
             archiveArtifacts artifacts: 'test-results/**', allowEmptyArchive: true
             archiveArtifacts artifacts: 'reports/**', allowEmptyArchive: true
+            archiveArtifacts artifacts: 'allure-results/**', allowEmptyArchive: true
+
+            echo '========== PUBLISH ALLURE REPORT =========='
+
+            allure includeProperties: false, jdk: '', results: [[path: 'allure-results']]
 
             echo '========== STOP CONTAINERS =========='
 

@@ -1,10 +1,7 @@
-version: '3.9'
-
 services:
 
   mongo:
     image: mongo:8
-    container_name: mongodb
 
     restart: unless-stopped
 
@@ -23,8 +20,6 @@ services:
   seed:
     build: .
 
-    container_name: mongo-seed
-
     depends_on:
       mongo:
         condition: service_healthy
@@ -36,8 +31,6 @@ services:
 
   playwright:
     build: .
-
-    container_name: playwright-framework
 
     depends_on:
       mongo:
@@ -54,6 +47,7 @@ services:
     volumes:
       - ./playwright-report:/app/playwright-report
       - ./test-results:/app/test-results
+      - ./allure-results:/app/allure-results
 
     command: npx playwright test
 
