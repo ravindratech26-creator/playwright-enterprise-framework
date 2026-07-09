@@ -3,7 +3,7 @@ import { test, expect } from '../../fixtures/pages';
 import { Logger } from '../../utils/Logger';
 import { Database } from '../../utils/Database';
 
-test('Verify user can login with valid credentials', async ({ page, loginPage, inventoryPage }) => {
+test('Verify user can login with valid credentials', { tag: ['@smoke', '@regression'] }, async ({ page, loginPage, inventoryPage }) => {
 
     // Fetch login credentials from MongoDB
     const user = await Database.getLoginUser(process.env.TEST_USER!);

@@ -1,7 +1,7 @@
 import { defineConfig, devices } from '@playwright/test';
 import dotenv from 'dotenv';
 
-const envFile = process.env.ENV_FILE || '.env.docker';
+const envFile = process.env.ENV_FILE || '.env.local';
 
 dotenv.config({
     path: envFile
