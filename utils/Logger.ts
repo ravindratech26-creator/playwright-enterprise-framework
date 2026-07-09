@@ -1,59 +1,81 @@
 import * as fs from 'fs';
 import * as path from 'path';
+import winston from 'winston';
 import { TestContext } from './TestContext';
+
+const logsDir = path.join(process.cwd(), 'logs');
+
+if (!fs.existsSync(logsDir)) {
+    fs.mkdirSync(logsDir, { recursive: true });
+}
+
+const customLevels = {
+    levels: {
+        error: 0,
+        warn: 1,
+        success: 2,
+        info: 3,
+        debug: 4
+    },
+    colors: {
+        error: 'red',
+        warn: 'yellow',
+        success: 'green',
+        info: 'blue',
+        debug: 'magenta'
+    }
+};
+
+winston.addColors(customLevels.colors);
+
+const withTestName = winston.format((info) => {
+    info.testName = TestContext.getTestName() || 'Unknown Test';
+    return info;
+});
+
+const logFormat = winston.format.printf(({ timestamp, level, message, testName }) =>
+    `${timestamp} [${level}] [${testName}] ${message}`
+);
+
+const winstonLogger = winston.createLogger({
+    levels: customLevels.levels,
+    level: 'debug',
+    transports: [
+        new winston.transports.Console({
+            format: winston.format.combine(
+                withTestName(),
+                winston.format.timestamp(),
+                winston.format.colorize({ all: true }),
+                logFormat
+            )
+        }),
+        new winston.transports.File({
+            filename: path.join(logsDir, 'framework.log'),
+            format: winston.format.combine(
+                withTestName(),
+                winston.format.timestamp(),
+                logFormat
+            )
+        })
+    ]
+});
 
 export class Logger {
 
-    // Log file location
-    private static readonly logFilePath = path.join(
-        process.cwd(),
-        'logs',
-        'framework.log'
-    );
-
-    // Generate current timestamp
-    private static getTimeStamp(): string {
-        return new Date().toLocaleString();
-    }
-
-    // Common method to write logs
-    private static writeLog(level: string, message: string): void {
-
-        const testName = TestContext.getTestName() || 'Unknown Test';
-
-        const logMessage =
-            `${this.getTimeStamp()} [${level}] [${testName}] ${message}\n`;
-
-        // Print to console
-        console.log(logMessage);
-
-        // Create logs folder if it doesn't exist
-        fs.mkdirSync(path.dirname(this.logFilePath), {
-            recursive: true
-        });
-
-        // Append log to framework.log
-        fs.appendFileSync(
-            this.logFilePath,
-            logMessage,
-            'utf8'
-        );
-    }
-
     static info(message: string): void {
-        this.writeLog('INFO', message);
+        winstonLogger.log('info', message);
     }
 
     static success(message: string): void {
-        this.writeLog('SUCCESS', message);
+        winstonLogger.log('success', message);
     }
 
     static warn(message: string): void {
-        this.writeLog('WARN', message);
+        winstonLogger.log('warn', message);
     }
 
     static error(message: string): void {
-        this.writeLog('ERROR', message);
+        winstonLogger.log('error', message);
     }
 
 }
