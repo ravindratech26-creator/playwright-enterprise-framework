@@ -11,6 +11,11 @@ test.beforeEach(async ({ page, browserName }, testInfo) => {
     Logger.info("TEST STARTED");
     Logger.info(`Test Name : ${testInfo.title}`);
     Logger.info(`Browser   : ${browserName}`);
+
+    if (testInfo.retry > 0) {
+        Logger.warn(`Retry Attempt : ${testInfo.retry}`);
+    }
+
     Logger.info("==================================================");
 
     // Navigate to application

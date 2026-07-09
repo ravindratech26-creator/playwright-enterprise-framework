@@ -10,6 +10,11 @@ on:
       - main
 
   workflow_dispatch:
+    inputs:
+      tag:
+        description: 'Test tag to run (smoke, regression, or leave empty for all)'
+        required: false
+        default: ''
 
   #schedule:
    # - cron: '0 2 * * *'
@@ -60,7 +65,14 @@ jobs:
           MONGO_DATABASE: ${{ secrets.MONGO_DATABASE }}
           MONGO_COLLECTION: ${{ secrets.MONGO_COLLECTION }}
           TEST_USER: ${{ secrets.TEST_USER }}
-        run: npx playwright test
+          TEST_PASSWORD: ${{ secrets.TEST_PASSWORD }}
+          TAG: ${{ github.event.inputs.tag }}
+        run: |
+          if [ -n "$TAG" ]; then
+            npx playwright test --grep @$TAG
+          else
+            npx playwright test
+          fi
 
       - name: Upload Playwright Report
         if: always()

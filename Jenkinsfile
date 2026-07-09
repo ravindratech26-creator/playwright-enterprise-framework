@@ -26,6 +26,12 @@ pipeline {
             description: 'Select Test Suite'
         )
 
+        choice(
+            name: 'TAG',
+            choices: ['all', 'smoke', 'regression'],
+            description: 'Select Test Tag'
+        )
+
     }
 
     environment {
@@ -86,27 +92,16 @@ pipeline {
 
                 script {
 
-                    if (params.TEST_SUITE == 'all') {
+                    def suiteArg = (params.TEST_SUITE == 'all') ? '' : params.TEST_SUITE
+                    def tagArg = (params.TAG == 'all') ? '' : "--grep @${params.TAG}"
 
-                        bat """
-                        docker compose run --rm ^
-                        -e BASE_URL=%BASE_URL% ^
-                        -e TEST_USER=%TEST_USER% ^
-                        playwright ^
-                        npx playwright test --project=${params.BROWSER}
-                        """
-
-                    } else {
-
-                        bat """
-                        docker compose run --rm ^
-                        -e BASE_URL=%BASE_URL% ^
-                        -e TEST_USER=%TEST_USER% ^
-                        playwright ^
-                        npx playwright test ${params.TEST_SUITE} --project=${params.BROWSER}
-                        """
-
-                    }
+                    bat """
+                    docker compose run --rm ^
+                    -e BASE_URL=%BASE_URL% ^
+                    -e TEST_USER=%TEST_USER% ^
+                    playwright ^
+                    npx playwright test ${suiteArg} --project=${params.BROWSER} ${tagArg}
+                    """
 
                 }
             }

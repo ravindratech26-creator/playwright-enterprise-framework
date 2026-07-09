@@ -8,6 +8,7 @@ test.afterEach(async ({ page, browserName }, testInfo) => {
     Logger.info(`Test Name : ${testInfo.title}`);
     Logger.info(`Browser   : ${browserName}`);
     Logger.info(`Status    : ${testInfo.status}`);
+    Logger.info(`Retries   : ${testInfo.retry} of ${testInfo.project.retries}`);
 
     // Capture screenshot on failure
     if (testInfo.status !== testInfo.expectedStatus) {

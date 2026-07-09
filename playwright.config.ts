@@ -17,7 +17,8 @@ const requiredEnvVars = [
     'MONGO_URI',
     'MONGO_DATABASE',
     'MONGO_COLLECTION',
-    'TEST_USER'
+    'TEST_USER',
+    'TEST_PASSWORD'
 ];
 
 for (const envVar of requiredEnvVars) {
@@ -30,11 +31,15 @@ export default defineConfig({
 
     testDir: './tests',
 
+    globalSetup: './globalSetup.ts',
+
+    globalTeardown: './globalTeardown.ts',
+
     fullyParallel: true,
 
     forbidOnly: !!process.env.CI,
 
-    retries: process.env.CI ? 2 : 0,
+    retries: process.env.RETRIES ? Number(process.env.RETRIES) : (process.env.CI ? 2 : 0),
 
     workers: process.env.CI ? 1 : undefined,
 
