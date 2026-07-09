@@ -13,7 +13,8 @@
     "test:webkit": "playwright test --project=webkit",
     "seed:local": "cross-env ENV_FILE=.env.local tsx scripts/seedMongo.ts",
     "seed:docker": "cross-env ENV_FILE=.env.docker tsx scripts/seedMongo.ts",
-    "allure:generate": "allure generate ./allure-results --clean -o ./allure-report",
+    "allure:history": "tsx scripts/copyAllureHistory.ts",
+    "allure:generate": "tsx scripts/copyAllureHistory.ts && allure generate ./allure-results --clean -o ./allure-report",
     "allure:open": "allure open ./allure-report"
   },
   "devDependencies": {
