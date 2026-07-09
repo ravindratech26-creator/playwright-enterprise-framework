@@ -1,22 +1,23 @@
 import { defineConfig, devices } from '@playwright/test';
 import dotenv from 'dotenv';
 
+const envFile = process.env.ENV_FILE || '.env.docker';
 
-// Load .env file
-dotenv.config();
+dotenv.config({
+    path: envFile
+});
 
+console.log(`Loaded Environment: ${envFile}`);
+
+console.log(`Loaded Environment: ${envFile}`);
 
 // Validate required environment variables
-
 const requiredEnvVars = [
     'BASE_URL',
-    'APP_USERNAME',
-    'APP_PASSWORD',
     'MONGO_URI',
     'MONGO_DATABASE',
-    'MONGO_COLLECTION'
-
-    
+    'MONGO_COLLECTION',
+    'TEST_USER'
 ];
 
 for (const envVar of requiredEnvVars) {
@@ -26,42 +27,47 @@ for (const envVar of requiredEnvVars) {
 }
 
 export default defineConfig({
-  testDir: './tests',
 
-  fullyParallel: true,
+    testDir: './tests',
 
-  forbidOnly: !!process.env.CI,
+    fullyParallel: true,
 
-  retries: process.env.CI ? 2 : 0,
+    forbidOnly: !!process.env.CI,
 
-  workers: process.env.CI ? 1 : undefined,
+    retries: process.env.CI ? 2 : 0,
 
-  reporter: [
-    ['html'],
-    ['json', { outputFile: 'reports/json/report.json' }],
-    ['junit', { outputFile: 'reports/junit/results.xml' }]
-  ],
+    workers: process.env.CI ? 1 : undefined,
 
-  use: {
-    baseURL: process.env.BASE_URL,
-    headless: true,
-    screenshot: 'only-on-failure',
-    video: 'retain-on-failure',
-    trace: 'retain-on-failure',
-  },
+    reporter: [
+        ['html'],
+        ['json', { outputFile: 'reports/json/report.json' }],
+        ['junit', { outputFile: 'reports/junit/results.xml' }]
+    ],
 
-  projects: [
-    {
-      name: 'chromium',
-      use: { ...devices['Desktop Chrome'] },
+    use: {
+        baseURL: process.env.BASE_URL,
+
+        headless: true,
+
+        screenshot: 'only-on-failure',
+
+        video: 'retain-on-failure',
+
+        trace: 'retain-on-failure'
     },
-    {
-      name: 'firefox',
-      use: { ...devices['Desktop Firefox'] },
-    },
-    {
-      name: 'webkit',
-      use: { ...devices['Desktop Safari'] },
-    },
-  ],
+
+    projects: [
+        {
+            name: 'chromium',
+            use: { ...devices['Desktop Chrome'] }
+        },
+        {
+            name: 'firefox',
+            use: { ...devices['Desktop Firefox'] }
+        },
+        {
+            name: 'webkit',
+            use: { ...devices['Desktop Safari'] }
+        }
+    ]
 });

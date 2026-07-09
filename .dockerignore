@@ -6,3 +6,4 @@ logs
 .github
 .vscode
 .env
+.env.*

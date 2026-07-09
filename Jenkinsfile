@@ -25,14 +25,20 @@ pipeline {
             ],
             description: 'Select Test Suite'
         )
+
     }
 
     environment {
-        IMAGE_NAME = 'playwright-enterprise-framework'
 
         BASE_URL = credentials('BASE_URL')
-        APP_USERNAME = credentials('APP_USERNAME')
-        APP_PASSWORD = credentials('APP_PASSWORD')
+        MONGO_DATABASE = credentials('MONGO_DATABASE')
+        MONGO_COLLECTION = credentials('MONGO_COLLECTION')
+        TEST_USER = credentials('TEST_USER')
+        TEST_PASSWORD = credentials('TEST_PASSWORD')
+
+        IMAGE_NAME = 'playwright-enterprise-framework'
+        ENV_FILE = '.env.docker'
+
     }
 
     stages {
@@ -44,40 +50,64 @@ pipeline {
             }
         }
 
-        stage('Build Docker Image') {
+        stage('Generate Environment File') {
             steps {
-                echo '========== BUILD DOCKER IMAGE =========='
-                bat "docker build -t %IMAGE_NAME% ."
+                echo '========== GENERATE .env.docker =========='
+                bat """
+                (
+                echo BASE_URL=%BASE_URL%
+                echo MONGO_URI=mongodb://mongo:27017
+                echo MONGO_DATABASE=%MONGO_DATABASE%
+                echo MONGO_COLLECTION=%MONGO_COLLECTION%
+                echo TEST_USER=%TEST_USER%
+                echo TEST_PASSWORD=%TEST_PASSWORD%
+                ) > .env.docker
+                """
+            }
+        }
+
+        stage('Build Docker Images') {
+            steps {
+                echo '========== BUILD DOCKER IMAGES =========='
+                bat 'docker compose build'
+            }
+        }
+
+        stage('Start MongoDB') {
+            steps {
+                echo '========== START MONGODB =========='
+                bat 'docker compose up -d mongo'
             }
         }
 
         stage('Run Playwright Tests') {
             steps {
+                echo '========== RUN PLAYWRIGHT TESTS =========='
+
                 script {
 
                     if (params.TEST_SUITE == 'all') {
 
                         bat """
-                        docker run --rm ^
+                        docker compose run --rm ^
                         -e BASE_URL=%BASE_URL% ^
-                        -e APP_USERNAME=%APP_USERNAME% ^
-                        -e APP_PASSWORD=%APP_PASSWORD% ^
-                        %IMAGE_NAME% ^
+                        -e TEST_USER=%TEST_USER% ^
+                        playwright ^
                         npx playwright test --project=${params.BROWSER}
                         """
 
                     } else {
 
                         bat """
-                        docker run --rm ^
+                        docker compose run --rm ^
                         -e BASE_URL=%BASE_URL% ^
-                        -e USERNAME=%USERNAME% ^
-                        -e PASSWORD=%PASSWORD% ^
-                        %IMAGE_NAME% ^
+                        -e TEST_USER=%TEST_USER% ^
+                        playwright ^
                         npx playwright test ${params.TEST_SUITE} --project=${params.BROWSER}
                         """
 
                     }
+
                 }
             }
         }
@@ -90,13 +120,13 @@ pipeline {
 
             echo '========== COPY REPORTS =========='
 
-            bat "docker image rm %IMAGE_NAME% || exit /b 0"
+            archiveArtifacts artifacts: 'playwright-report/**', allowEmptyArchive: true
+            archiveArtifacts artifacts: 'test-results/**', allowEmptyArchive: true
+            archiveArtifacts artifacts: 'reports/**', allowEmptyArchive: true
 
-            archiveArtifacts artifacts: 'playwright-report/**', fingerprint: true, allowEmptyArchive: true
+            echo '========== STOP CONTAINERS =========='
 
-            archiveArtifacts artifacts: 'test-results/**', fingerprint: true, allowEmptyArchive: true
-
-            archiveArtifacts artifacts: 'reports/**', fingerprint: true, allowEmptyArchive: true
+            bat 'docker compose down'
 
         }
 

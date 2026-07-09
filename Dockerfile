@@ -13,7 +13,8 @@ RUN npm ci
 # Copy project files
 COPY . .
 
-RUN npx playwright install
+# Install Playwright browsers
+RUN npx playwright install --with-deps
 
-# Execute Playwright tests
+# Run Playwright tests
 CMD ["npx", "playwright", "test"]

@@ -2,19 +2,60 @@ version: '3.9'
 
 services:
 
-  playwright:
+  mongo:
+    image: mongo:8
+    container_name: mongodb
 
+    restart: unless-stopped
+
+    ports:
+      - "27017:27017"
+
+    volumes:
+      - mongo-data:/data/db
+
+    healthcheck:
+      test: ["CMD", "mongosh", "--eval", "db.adminCommand('ping')"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  seed:
+    build: .
+
+    container_name: mongo-seed
+
+    depends_on:
+      mongo:
+        condition: service_healthy
+
+    env_file:
+      - .env.docker
+
+    command: npm run seed:docker
+
+  playwright:
     build: .
 
     container_name: playwright-framework
 
+    depends_on:
+      mongo:
+        condition: service_healthy
+      seed:
+        condition: service_completed_successfully
+
     env_file:
-      - .env
+      - .env.docker
 
     environment:
-      MONGO_URI: mongodb://host.docker.internal:27017
+      ENV_FILE: .env.docker
 
     volumes:
       - ./playwright-report:/app/playwright-report
+      - ./test-results:/app/test-results
 
     command: npx playwright test
+
+volumes:
+  mongo-data:

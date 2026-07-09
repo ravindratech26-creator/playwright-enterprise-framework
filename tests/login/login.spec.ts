@@ -5,11 +5,12 @@ import { Database } from '../../utils/Database';
 
 test('Verify user can login with valid credentials', async ({ page, loginPage, inventoryPage }) => {
 
-    const user = await Database.getLoginUser("standard_user");
+    // Fetch login credentials from MongoDB
+    const user = await Database.getLoginUser(process.env.TEST_USER!);
 
     await loginPage.login(
-        user!.username,
-        user!.password
+        user.username,
+        user.password
     );
 
     await expect(page).toHaveURL('/inventory.html');

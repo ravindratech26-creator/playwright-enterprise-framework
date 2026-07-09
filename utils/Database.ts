@@ -6,13 +6,23 @@ export class Database {
 
         const mongo = new MongoDBClient();
 
-        await mongo.connect();
+        try {
 
-        const user = await mongo.getLoginUser(username);
+            await mongo.connect();
 
-        await mongo.close();
+            const user = await mongo.getLoginUser(username);
 
-        return user;
+            if (!user) {
+                throw new Error(`User '${username}' not found in MongoDB.`);
+            }
+
+            return user;
+
+        } finally {
+
+            await mongo.close();
+
+        }
     }
 
 }

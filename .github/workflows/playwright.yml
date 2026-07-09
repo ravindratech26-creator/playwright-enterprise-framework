@@ -18,6 +18,17 @@ jobs:
   playwright-tests:
     runs-on: ubuntu-latest
 
+    services:
+      mongo:
+        image: mongo:8
+        ports:
+          - 27017:27017
+        options: >-
+          --health-cmd "mongosh --eval 'db.adminCommand(\"ping\")'"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
@@ -33,11 +44,22 @@ jobs:
       - name: Install Playwright Browsers
         run: npx playwright install --with-deps
 
+      - name: Seed MongoDB
+        env:
+          MONGO_URI: ${{ secrets.MONGO_URI }}
+          MONGO_DATABASE: ${{ secrets.MONGO_DATABASE }}
+          MONGO_COLLECTION: ${{ secrets.MONGO_COLLECTION }}
+          TEST_USER: ${{ secrets.TEST_USER }}
+          TEST_PASSWORD: ${{ secrets.TEST_PASSWORD }}
+        run: npx tsx scripts/seedMongo.ts
+
       - name: Run Playwright Tests
         env:
           BASE_URL: ${{ secrets.BASE_URL }}
-          APP_USERNAME: ${{ secrets.APP_USERNAME }}
-          APP_PASSWORD: ${{ secrets.APP_PASSWORD }}
+          MONGO_URI: ${{ secrets.MONGO_URI }}
+          MONGO_DATABASE: ${{ secrets.MONGO_DATABASE }}
+          MONGO_COLLECTION: ${{ secrets.MONGO_COLLECTION }}
+          TEST_USER: ${{ secrets.TEST_USER }}
         run: npx playwright test
 
       - name: Upload Playwright Report
