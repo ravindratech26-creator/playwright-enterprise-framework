@@ -33,8 +33,8 @@ const withTestName = winston.format((info) => {
     return info;
 });
 
-const logFormat = winston.format.printf(({ timestamp, level, message, testName }) =>
-    `${timestamp} [${level}] [${testName}] ${message}`
+const logFormat = winston.format.printf(
+    ({ timestamp, level, message, testName }) => `${timestamp} [${level}] [${testName}] ${message}`
 );
 
 const winstonLogger = winston.createLogger({
@@ -51,17 +51,12 @@ const winstonLogger = winston.createLogger({
         }),
         new winston.transports.File({
             filename: path.join(logsDir, 'framework.log'),
-            format: winston.format.combine(
-                withTestName(),
-                winston.format.timestamp(),
-                logFormat
-            )
+            format: winston.format.combine(withTestName(), winston.format.timestamp(), logFormat)
         })
     ]
 });
 
 export class Logger {
-
     static info(message: string): void {
         winstonLogger.log('info', message);
     }
@@ -77,5 +72,4 @@ export class Logger {
     static error(message: string): void {
         winstonLogger.log('error', message);
     }
-
 }

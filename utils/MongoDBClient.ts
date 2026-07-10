@@ -1,7 +1,6 @@
-import { MongoClient, Db } from "mongodb";
+import { MongoClient, Db } from 'mongodb';
 
 export class MongoDBClient {
-
     private client: MongoClient;
     private database: Db | null = null;
 
@@ -14,35 +13,26 @@ export class MongoDBClient {
 
         this.database = this.client.db(process.env.MONGO_DATABASE!);
 
-        console.log("✅ Connected to MongoDB");
+        console.log('✅ Connected to MongoDB');
     }
 
     getCollection() {
-
         if (!this.database) {
-            throw new Error("Database connection not established.");
+            throw new Error('Database connection not established.');
         }
 
         return this.database.collection(process.env.MONGO_COLLECTION!);
     }
-    
 
     async getLoginUser(username: string) {
+        const collection = this.getCollection();
 
-    const collection = this.getCollection();
+        const user = await collection.findOne({ username });
 
-
-    const users = await collection.find({}).toArray();
-
-
-    const user = await collection.findOne({ username });
-
-
-    return user;
-}
+        return user;
+    }
 
     async close() {
         await this.client.close();
     }
-
 }

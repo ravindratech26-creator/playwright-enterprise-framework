@@ -2,7 +2,6 @@ import { MongoClient } from 'mongodb';
 import { Logger } from './utils/Logger';
 
 async function globalSetup() {
-
     Logger.info('========== GLOBAL SETUP: SEEDING MONGODB ==========');
 
     const client = new MongoClient(process.env.MONGO_URI!);
@@ -19,11 +18,12 @@ async function globalSetup() {
             { upsert: true }
         );
 
-        Logger.success(`Seeded user '${process.env.TEST_USER}' into ${process.env.MONGO_DATABASE}.${process.env.MONGO_COLLECTION}`);
+        Logger.success(
+            `Seeded user '${process.env.TEST_USER}' into ${process.env.MONGO_DATABASE}.${process.env.MONGO_COLLECTION}`
+        );
     } finally {
         await client.close();
     }
-
 }
 
 export default globalSetup;

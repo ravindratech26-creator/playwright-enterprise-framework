@@ -8,7 +8,6 @@ type MyFixtures = {
 };
 
 export const test = base.extend<MyFixtures>({
-
     loginPage: async ({ page }, use) => {
         await use(new LoginPage(page));
     },
@@ -16,7 +15,6 @@ export const test = base.extend<MyFixtures>({
     inventoryPage: async ({ page }, use) => {
         await use(new InventoryPage(page));
     }
-
 });
 
 export { expect } from '@playwright/test';

@@ -1,35 +1,53 @@
 {
-  "name": "playwright-enterprise-framework",
-  "version": "1.0.0",
-  "description": "Enterprise Playwright Automation Framework",
-  "main": "index.js",
-  "type": "commonjs",
-  "scripts": {
-    "test": "playwright test",
-    "test:local": "cross-env ENV_FILE=.env.local playwright test",
-    "test:docker": "cross-env ENV_FILE=.env.docker playwright test",
-    "test:chromium": "playwright test --project=chromium",
-    "test:firefox": "playwright test --project=firefox",
-    "test:webkit": "playwright test --project=webkit",
-    "test:smoke": "playwright test --grep @smoke",
-    "test:regression": "playwright test --grep @regression",
-    "seed:local": "cross-env ENV_FILE=.env.local tsx scripts/seedMongo.ts",
-    "seed:docker": "cross-env ENV_FILE=.env.docker tsx scripts/seedMongo.ts",
-    "allure:history": "tsx scripts/copyAllureHistory.ts",
-    "allure:generate": "tsx scripts/copyAllureHistory.ts && allure generate ./allure-results --clean -o ./allure-report",
-    "allure:open": "allure open ./allure-report"
-  },
-  "devDependencies": {
-    "@playwright/test": "^1.61.1",
-    "@types/node": "^26.1.0",
-    "allure-commandline": "^2.32.0",
-    "allure-playwright": "^3.0.0",
-    "cross-env": "^10.1.0",
-    "tsx": "^4.20.5"
-  },
-  "dependencies": {
-    "dotenv": "^17.4.2",
-    "mongodb": "^7.5.0",
-    "winston": "^3.13.0"
-  }
+    "name": "playwright-enterprise-framework",
+    "version": "1.0.0",
+    "description": "Enterprise Playwright Automation Framework",
+    "main": "index.js",
+    "type": "commonjs",
+    "scripts": {
+        "test": "playwright test",
+        "test:local": "cross-env ENV_FILE=.env.local playwright test",
+        "test:docker": "cross-env ENV_FILE=.env.docker playwright test",
+        "test:chromium": "playwright test --project=chromium",
+        "test:firefox": "playwright test --project=firefox",
+        "test:webkit": "playwright test --project=webkit",
+        "test:smoke": "playwright test --grep @smoke",
+        "test:regression": "playwright test --grep @regression",
+        "allure:history": "tsx scripts/copyAllureHistory.ts",
+        "allure:generate": "tsx scripts/copyAllureHistory.ts && allure generate ./allure-results --clean -o ./allure-report",
+        "allure:open": "allure open ./allure-report",
+        "lint": "eslint .",
+        "lint:fix": "eslint . --fix",
+        "format": "prettier --write .",
+        "format:check": "prettier --check .",
+        "docker:test": "docker compose up --build --abort-on-container-exit --exit-code-from playwright",
+        "docker:down": "docker compose down",
+        "prepare": "husky"
+    },
+    "lint-staged": {
+        "*.ts": [
+            "eslint --fix",
+            "prettier --write"
+        ]
+    },
+    "devDependencies": {
+        "@playwright/test": "^1.61.1",
+        "@types/node": "^26.1.0",
+        "allure-commandline": "^2.32.0",
+        "allure-playwright": "^3.0.0",
+        "cross-env": "^10.1.0",
+        "eslint": "^10.6.0",
+        "eslint-config-prettier": "^10.1.8",
+        "eslint-plugin-playwright": "^2.10.5",
+        "husky": "^9.1.7",
+        "lint-staged": "^17.0.8",
+        "prettier": "^3.9.5",
+        "tsx": "^4.20.5",
+        "typescript-eslint": "^8.63.0"
+    },
+    "dependencies": {
+        "dotenv": "^17.4.2",
+        "mongodb": "^7.5.0",
+        "winston": "^3.13.0"
+    }
 }

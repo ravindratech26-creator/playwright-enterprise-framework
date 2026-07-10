@@ -1,111 +1,158 @@
 name: Playwright Framework
 
 on:
-  push:
-    branches:
-      - main
+    push:
+        branches:
+            - main
 
-  pull_request:
-    branches:
-      - main
+    pull_request:
+        branches:
+            - main
 
-  workflow_dispatch:
-    inputs:
-      tag:
-        description: 'Test tag to run (smoke, regression, or leave empty for all)'
-        required: false
-        default: ''
+    workflow_dispatch:
+        inputs:
+            tag:
+                description: 'Test tag to run (smoke, regression, or leave empty for all)'
+                required: false
+                default: ''
 
-  #schedule:
-   # - cron: '0 2 * * *'
+    #schedule:
+    # - cron: '0 2 * * *'
 
 jobs:
-  playwright-tests:
-    runs-on: ubuntu-latest
+    lint:
+        runs-on: ubuntu-latest
 
-    services:
-      mongo:
-        image: mongo:8
-        ports:
-          - 27017:27017
-        options: >-
-          --health-cmd "mongosh --eval 'db.adminCommand(\"ping\")'"
-          --health-interval 10s
-          --health-timeout 5s
-          --health-retries 5
+        steps:
+            - name: Checkout Repository
+              uses: actions/checkout@v4
 
-    steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v4
+            - name: Setup Node.js
+              uses: actions/setup-node@v4
+              with:
+                  node-version: 24
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 24
+            - name: Install Dependencies
+              run: npm ci
 
-      - name: Install Dependencies
-        run: npm ci
+            - name: Run ESLint
+              run: npm run lint
 
-      - name: Install Playwright Browsers
-        run: npx playwright install --with-deps
+            - name: Check Formatting
+              run: npm run format:check
 
-      - name: Seed MongoDB
-        env:
-          MONGO_URI: ${{ secrets.MONGO_URI }}
-          MONGO_DATABASE: ${{ secrets.MONGO_DATABASE }}
-          MONGO_COLLECTION: ${{ secrets.MONGO_COLLECTION }}
-          TEST_USER: ${{ secrets.TEST_USER }}
-          TEST_PASSWORD: ${{ secrets.TEST_PASSWORD }}
-        run: npx tsx scripts/seedMongo.ts
+    playwright-tests:
+        needs: lint
+        runs-on: ubuntu-latest
 
-      - name: Run Playwright Tests
-        env:
-          BASE_URL: ${{ secrets.BASE_URL }}
-          MONGO_URI: ${{ secrets.MONGO_URI }}
-          MONGO_DATABASE: ${{ secrets.MONGO_DATABASE }}
-          MONGO_COLLECTION: ${{ secrets.MONGO_COLLECTION }}
-          TEST_USER: ${{ secrets.TEST_USER }}
-          TEST_PASSWORD: ${{ secrets.TEST_PASSWORD }}
-          TAG: ${{ github.event.inputs.tag }}
-        run: |
-          if [ -n "$TAG" ]; then
-            npx playwright test --grep @$TAG
-          else
-            npx playwright test
-          fi
+        strategy:
+            fail-fast: false
+            matrix:
+                browser: [chromium, firefox, webkit]
 
-      - name: Upload Playwright Report
+        services:
+            mongo:
+                image: mongo:8
+                ports:
+                    - 27017:27017
+                options: >-
+                    --health-cmd "mongosh --eval 'db.adminCommand(\"ping\")'"
+                    --health-interval 10s
+                    --health-timeout 5s
+                    --health-retries 5
+
+        steps:
+            - name: Checkout Repository
+              uses: actions/checkout@v4
+
+            - name: Setup Node.js
+              uses: actions/setup-node@v4
+              with:
+                  node-version: 24
+
+            - name: Install Dependencies
+              run: npm ci
+
+            - name: Install Playwright Browsers
+              run: npx playwright install --with-deps ${{ matrix.browser }}
+
+            - name: Run Playwright Tests
+              env:
+                  BASE_URL: ${{ secrets.BASE_URL }}
+                  MONGO_URI: ${{ secrets.MONGO_URI }}
+                  MONGO_DATABASE: ${{ secrets.MONGO_DATABASE }}
+                  MONGO_COLLECTION: ${{ secrets.MONGO_COLLECTION }}
+                  TEST_USER: ${{ secrets.TEST_USER }}
+                  TEST_PASSWORD: ${{ secrets.TEST_PASSWORD }}
+                  TAG: ${{ github.event.inputs.tag }}
+                  REPORT_SUFFIX: ${{ matrix.browser }}
+              run: |
+                  if [ -n "$TAG" ]; then
+                    npx playwright test --project=${{ matrix.browser }} --grep @$TAG
+                  else
+                    npx playwright test --project=${{ matrix.browser }}
+                  fi
+
+            - name: Upload Playwright Report
+              if: always()
+              uses: actions/upload-artifact@v4
+              with:
+                  name: playwright-report-${{ matrix.browser }}
+                  path: playwright-report-${{ matrix.browser }}/
+                  retention-days: 30
+
+            - name: Upload Allure Results
+              if: always()
+              uses: actions/upload-artifact@v4
+              with:
+                  name: allure-results-${{ matrix.browser }}
+                  path: allure-results-${{ matrix.browser }}/
+                  retention-days: 30
+
+    merge-reports:
+        needs: playwright-tests
         if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: playwright-report
-          path: playwright-report/
-          retention-days: 30
+        runs-on: ubuntu-latest
 
-      - name: Restore Previous Allure Report (for trend history)
-        if: always()
-        uses: actions/cache@v4
-        with:
-          path: allure-report
-          key: allure-report-${{ github.run_id }}
-          restore-keys: |
-            allure-report-
+        steps:
+            - name: Checkout Repository
+              uses: actions/checkout@v4
 
-      - name: Setup Java (required for Allure report generation)
-        if: always()
-        uses: actions/setup-java@v4
-        with:
-          distribution: temurin
-          java-version: '21'
+            - name: Setup Node.js
+              uses: actions/setup-node@v4
+              with:
+                  node-version: 24
 
-      - name: Generate Allure Report
-        if: always()
-        run: npx tsx scripts/copyAllureHistory.ts && npx allure generate ./allure-results --clean -o ./allure-report
+            - name: Install Dependencies
+              run: npm ci
 
-      - name: Upload Allure Report
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: allure-report
-          path: allure-report/
-          retention-days: 30
+            - name: Download Allure Results (all browsers merged)
+              uses: actions/download-artifact@v4
+              with:
+                  pattern: allure-results-*
+                  path: allure-results
+                  merge-multiple: true
+
+            - name: Restore Previous Allure Report (for trend history)
+              uses: actions/cache@v4
+              with:
+                  path: allure-report
+                  key: allure-report-${{ github.run_id }}
+                  restore-keys: |
+                      allure-report-
+
+            - name: Setup Java (required for Allure report generation)
+              uses: actions/setup-java@v4
+              with:
+                  distribution: temurin
+                  java-version: '21'
+
+            - name: Generate Combined Allure Report
+              run: npx tsx scripts/copyAllureHistory.ts && npx allure generate ./allure-results --clean -o ./allure-report
+
+            - name: Upload Allure Report
+              uses: actions/upload-artifact@v4
+              with:
+                  name: allure-report
+                  path: allure-report/
+                  retention-days: 30

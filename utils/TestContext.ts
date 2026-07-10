@@ -1,5 +1,4 @@
 export class TestContext {
-
     private static testName = '';
     private static startTime = 0;
 
@@ -18,5 +17,4 @@ export class TestContext {
     static getExecutionTime(): number {
         return Date.now() - this.startTime;
     }
-
 }

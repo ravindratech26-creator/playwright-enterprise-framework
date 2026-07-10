@@ -1,55 +1,41 @@
 services:
+    mongo:
+        image: mongo:8
 
-  mongo:
-    image: mongo:8
+        restart: unless-stopped
 
-    restart: unless-stopped
+        ports:
+            - '27017:27017'
 
-    ports:
-      - "27017:27017"
+        volumes:
+            - mongo-data:/data/db
 
-    volumes:
-      - mongo-data:/data/db
+        healthcheck:
+            test: ['CMD', 'mongosh', '--eval', "db.adminCommand('ping')"]
+            interval: 10s
+            timeout: 5s
+            retries: 5
 
-    healthcheck:
-      test: ["CMD", "mongosh", "--eval", "db.adminCommand('ping')"]
-      interval: 10s
-      timeout: 5s
-      retries: 5
+    playwright:
+        build: .
 
-  seed:
-    build: .
+        depends_on:
+            mongo:
+                condition: service_healthy
 
-    depends_on:
-      mongo:
-        condition: service_healthy
+        env_file:
+            - .env.docker
 
-    env_file:
-      - .env.docker
+        environment:
+            ENV_FILE: .env.docker
 
-    command: npm run seed:docker
+        volumes:
+            - ./playwright-report:/app/playwright-report
+            - ./test-results:/app/test-results
+            - ./allure-results:/app/allure-results
+            - ./tests:/app/tests
 
-  playwright:
-    build: .
-
-    depends_on:
-      mongo:
-        condition: service_healthy
-      seed:
-        condition: service_completed_successfully
-
-    env_file:
-      - .env.docker
-
-    environment:
-      ENV_FILE: .env.docker
-
-    volumes:
-      - ./playwright-report:/app/playwright-report
-      - ./test-results:/app/test-results
-      - ./allure-results:/app/allure-results
-
-    command: npx playwright test
+        command: npx playwright test
 
 volumes:
-  mongo-data:
+    mongo-data:
